@@ -35,3 +35,9 @@ python check_domain.py
 ```
 Enter the domain name when prompted.
 
+### Web Version
+
+run index.html on server with php
+
+
+
