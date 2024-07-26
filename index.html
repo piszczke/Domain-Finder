@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Domain Finder</title>
+</head>
+<body>
+    <h1>Domain Finder</h1>
+    <form id="domainForm">
+        <input type="text" id="domain" name="domain" placeholder="Enter domain name">
+        <button type="submit">Check Availability</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('domainForm').onsubmit = function(e) {
+            e.preventDefault();
+            var domain = document.getElementById('domain').value;
+            fetch('check_domain.php?domain=' + domain)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.available) {
+                        document.getElementById('result').innerText = `The domain ${domain} is available.`;
+                    } else {
+                        document.getElementById('result').innerText = `The domain ${domain} is not available.`;
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('result').innerText = 'Error: ' + error;
+                });
+        };
+    </script>
+</body>
+</html>
